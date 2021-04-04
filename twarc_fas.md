@@ -276,7 +276,7 @@ TwarcJsonData = []
 
 for line in open(TwarcFile, 'r'):
 
-TwarcJsonData.append(json.loads(line))
+     TwarcJsonData.append(json.loads(line))
 
 ```
 
