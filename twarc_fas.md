@@ -20,11 +20,7 @@ The following tutorial demonstrates the basic installation and use of twarc v2 f
 
 Before installing twarc, make sure that you have a recent and updated installation of Python 2 or 3. Python can be downloaded from the official [python.org](https://www.python.org/downloads/) website. After installing python you can proceed with the installation of twarc or twarc v2 using the popular package-management system called pip.
 
-  
 
-As of the writing of this guide, twarc v2 currently exists as a [branch of the original twarc github](https://github.com/DocNow/twarc/tree/v2). Thus, we need to slightly modify how we would normally install a Python package.
-
-  
 
 Open up a new terminal and install twarc v2 by typing:
 
@@ -32,7 +28,7 @@ Open up a new terminal and install twarc v2 by typing:
 
 ```console
 
-pip install https://github.com/DocNow/twarc/archive/v2.zip
+pip install twarc
 
 ```
 
