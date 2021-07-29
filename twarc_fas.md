@@ -89,20 +89,13 @@ Note that in almost all situations adding the `--archive` option will tap a much
 In general, you may want to add more rules on your full archive search to gather more specific tweets. For example, let's say you want to gather tweets related to Black Lives Matter from 2015 to 2016. Well, you can add flags for `--start-time` and `--end-time`. Note that these times should be in [%Y-%m-%d|%Y-%m-%dT%H:%M:%S] format. Let's see a full archive search looks like with start and end rules:
 
 ```console
-> twarc2 search '#blacklivesmatter' \  
---start-time 2015-01-01 \  
---end-time 2016-12-31 \  
---archive  
+> twarc2 search '#blacklivesmatter' --start-time 2015-01-01 --end-time 2016-12-31 --archive  
 ```
 
 If you run the above command you will be pulling form a very large pool of tweets - #blacklivesmatter is a popular topic and we are considering tweets across an entire year. Some additional ways to reduce the number of tweets could be to exclude retweets and grab a specific number of tweets, say, 5000. Well, twarc has options for these rules as well! Let's see what these additional rules look like:
 
 ```console
-> twarc2 search '#blacklivesmatter -is:retweet' \
---start-time 2015-01-01 \
---end-time 2016-12-31 \
---limit 5000
---archive
+> twarc2 search '#blacklivesmatter -is:retweet' --start-time 2015-01-01 --end-time 2016-12-31 --limit 5000 --archive
 ```
 
 Note that the rule to exclude retweets (`-is:retweet`) actually appears *within* the quoted search query, whereas the limit on the number of tweets appears as an option flag. At this point we have set several additional rules to create a more specific query of the Twitter full archive.
