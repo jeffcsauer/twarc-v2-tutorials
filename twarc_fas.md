@@ -115,13 +115,38 @@ An additional choice that many users may find helpful is to *flatten* the data p
 
 ## Processing data into common analysis formats
 
-The resulting file is a data type called JSON, which has many advantages for moving large amounts of structured data. However, we need to take some steps to transform the JSON into a form more common for data analysis. We can use the [twarc-csv](https://github.com/docnow/twarc-csv) module to convert the line oriented JSON to CSV which then should be more easy to use as Data Frames in tools like [Pandas](https://pandas.pydata.org/) and [R](https://www.r-project.org/). Twarc plugins are distributed separately from twarc, and they extend the base twarc2 command with additional subcommands, in the case of twarc-csv a `csv` subcommand will be added.
+The resulting file is a data type called JSON, which has many advantages for moving large amounts of structured data. However, we need to take some steps to transform the JSON into a form more common for data analysis. We can use the [twarc-csv](https://github.com/docnow/twarc-csv) module to convert the line oriented JSON to CSV which then should be more easy to use as DataFrames in tools like [Pandas](https://pandas.pydata.org/) and [R](https://www.r-project.org/). Twarc plugins are distributed separately from twarc, and they extend the base twarc2 command with additional subcommands, in the case of twarc-csv a `csv` subcommand will be added.
 
 ```console
 
 > pip install twarc-csv
 > twarc2 csv tweets.jsonl tweets.csv
 ```
+
+Then you can load the CSV into a Pandas DataFrame:
+
+```python
+import pandas
+pandas.read_csv('tweets.csv')
+```
+
+Of course you can process the tweets directly as JSON. To make your life easier you may want to flatten it first to ensure that each line contains a single tweet.
+
+```console
+twarc2 flatten tweets.jsonl flattened-tweets.jsonl
+```
+
+Then you can create a small Python program you can read in each line, parses it as JSON, and then does something with the data (in this case it prints out the tweet ID and text):
+
+```python
+import json
+
+for line in open('tweets.jsonl'):
+    tweet = json.loads(line)
+    print(tweet['data']['id'], tweets['data']['text'])
+```
+
+Python is used here just as an example, and modern programming language you might find will have a JSON parsing library.
 
 ## Concluding remarks
 
